@@ -13,13 +13,15 @@ struct TaskRow: View {
     var body: some View {
         
         HStack(spacing: 20){
-            Image(systemName: "circle")
+            Image(systemName: complated ? "checkmark.circle" : "circle")
+            
+            Text(task)
         }
     }
 }
 
 struct TaskRow_Previews: PreviewProvider {
     static var previews: some View {
-        TaskRow(task: "Okunacaklar", complated: true)
+        TaskRow(task: "Kod yaz!", complated: true)
     }
 }
