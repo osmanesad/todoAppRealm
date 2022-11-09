@@ -10,6 +10,7 @@ import SwiftUI
 struct AddTaskView: View {
     
     @State private var title: String = ""
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
         VStack(alignment: .leading, spacing: 20){
@@ -23,6 +24,7 @@ struct AddTaskView: View {
             
             Button{
                 print("Yeni görev eklendi.")
+                dismiss()
             } label: {
                 Text("Ekle")
                     .foregroundColor(.white)
