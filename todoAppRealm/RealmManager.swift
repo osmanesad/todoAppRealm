@@ -10,21 +10,23 @@ import RealmSwift
 
 class RealmManager: ObservableObject {
     private(set) var localRealm: Realm?
+    @Published private(set) var tasks: [Task] = []
     
     init() {
         openRealm()
+        getTasks()
     }
     
     func openRealm() {
         do {
             let config = Realm.Configuration(schemaVersion: 1)
             
-//            ,  migrationBlock: { migration, oldSchemaVersions in
-//            if oldSchemaVersions > 1 {
-//                //
-//            }
-//
-//        }
+            //            ,  migrationBlock: { migration, oldSchemaVersions in
+            //            if oldSchemaVersions > 1 {
+            //                //
+            //            }
+            //
+            //        }
             
             Realm.Configuration.defaultConfiguration = config
             
@@ -34,13 +36,16 @@ class RealmManager: ObservableObject {
             print("Error opening Real: \(error)") // Realm bağlantısıyla ilgi bir sorun var.
         }
     }
-    // MARK: - Add Operaiton
+    
+    
+    // MARK: - Create
     func addTask(taskTitle: String) {
         if let localRealm = localRealm {
             do {
                 try localRealm.write {
                     let newTask = Task(value: ["title": taskTitle, "completed": false])
                     localRealm.add(newTask)
+                    getTasks()
                     print("Kayıt Başarılı: \(newTask)")
                 }
                 
@@ -50,4 +55,18 @@ class RealmManager: ObservableObject {
         }
         
     }
+    
+    // MARK: - Read
+    
+    func getTasks() {
+        if let localRealm = localRealm {
+            let allTask = localRealm.objects(Task.self).sorted(byKeyPath: "completed")
+            tasks = []
+            allTask.forEach{task in
+                tasks.append(task)}
+        }
+    }
+    
+    // MARK: - Update
+    
 }
