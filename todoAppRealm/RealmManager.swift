@@ -19,6 +19,13 @@ class RealmManager: ObservableObject {
         do {
             let config = Realm.Configuration(schemaVersion: 1)
             
+//            ,  migrationBlock: { migration, oldSchemaVersions in
+//            if oldSchemaVersions > 1 {
+//                //
+//            }
+//
+//        }
+            
             Realm.Configuration.defaultConfiguration = config
             
             localRealm = try Realm()
@@ -26,5 +33,21 @@ class RealmManager: ObservableObject {
         } catch {
             print("Error opening Real: \(error)") // Realm bağlantısıyla ilgi bir sorun var.
         }
+    }
+    // MARK: - Add Operaiton
+    func addTask(taskTitle: String) {
+        if let localRealm = localRealm {
+            do {
+                try localRealm.write {
+                    let newTask = Task(value: ["title": taskTitle, "completed": false])
+                    localRealm.add(newTask)
+                    print("Kayıt Başarılı: \(newTask)")
+                }
+                
+            } catch {
+                print("Hata! Görev eklenirken sorun oluştu. \(error)")
+            }
+        }
+        
     }
 }
