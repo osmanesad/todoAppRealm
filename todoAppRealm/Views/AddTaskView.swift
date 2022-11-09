@@ -13,12 +13,13 @@ struct AddTaskView: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 20){
-            Text("Yeni görev oluştur.")
+            Text("Görev oluştur.")
                 .font(.title3).bold()
                 .frame(maxWidth: .infinity, alignment: .leading)
             
-            TextField("Yeni görevi ekle", text: $title)
+            TextField("Kitap okumalıyım.", text: $title)
                 .textFieldStyle(.roundedBorder)
+                //.cornerRadius(26)
             
             Button{
                 print("Yeni görev eklendi.")
@@ -27,12 +28,16 @@ struct AddTaskView: View {
                     .foregroundColor(.white)
                     .padding()
                     .padding(.horizontal)
-                    .background(.green)
+                    .background(Color(red: 0.10196078431372549, green: 0.5372549019607843, blue: 0.09019607843137255))
+                    .cornerRadius(26)
             }
+            Spacer()
         }
         .padding(.top, 40)
         .padding(.horizontal)
-        .background(Color(hue: 0.20, saturation: 0.150, brightness: 0.980))
+        .background(Color(hue: 0.16, saturation: 0.087, brightness: 1.0))
+        
+        
     
     }
         

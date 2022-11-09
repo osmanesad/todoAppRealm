@@ -14,6 +14,7 @@
 		2383FBBA2919A5E7005E599F /* TasksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2383FBB92919A5E7005E599F /* TasksView.swift */; };
 		2383FBBE2919A78B005E599F /* TaskRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2383FBBD2919A78B005E599F /* TaskRow.swift */; };
 		2383FBC02919C2C9005E599F /* AddTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2383FBBF2919C2C9005E599F /* AddTaskView.swift */; };
+		238B4B99291C0D38002B490E /* SmallAddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238B4B98291C0D38002B490E /* SmallAddButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		2383FBB92919A5E7005E599F /* TasksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksView.swift; sourceTree = "<group>"; };
 		2383FBBD2919A78B005E599F /* TaskRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskRow.swift; sourceTree = "<group>"; };
 		2383FBBF2919C2C9005E599F /* AddTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskView.swift; sourceTree = "<group>"; };
+		238B4B98291C0D38002B490E /* SmallAddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallAddButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				2383FBBD2919A78B005E599F /* TaskRow.swift */,
+				238B4B98291C0D38002B490E /* SmallAddButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -165,6 +168,7 @@
 				2383FBAE29199F58005E599F /* ContentView.swift in Sources */,
 				2383FBC02919C2C9005E599F /* AddTaskView.swift in Sources */,
 				2383FBBA2919A5E7005E599F /* TasksView.swift in Sources */,
+				238B4B99291C0D38002B490E /* SmallAddButton.swift in Sources */,
 				2383FBAC29199F58005E599F /* todoAppRealmApp.swift in Sources */,
 				2383FBBE2919A78B005E599F /* TaskRow.swift in Sources */,
 			);
