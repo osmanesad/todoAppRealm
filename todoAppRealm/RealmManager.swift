@@ -87,4 +87,23 @@ class RealmManager: ObservableObject {
         
     }
     
+    // MARK: - Delete
+    
+    func deleteTask(id: ObjectId){
+        if let localRealm = localRealm {
+            do {
+                let taskToDelete = localRealm.objects(Task.self).filter(NSPredicate(format: "id == %@", id))
+                guard !taskToDelete.isEmpty else {return}
+                
+                try localRealm.write{
+                    localRealm.delete(taskToDelete)
+                    getTasks()
+                    print("Silme işlemi başarılı. ID: \(id)")
+                }
+            } catch {
+                print("Hata! Silme işlemi sırasında sorun. ID: \(id) Hata: \(error)")
+            }
+        }
+    }
+    
 }
