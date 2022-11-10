@@ -20,10 +20,20 @@ struct TasksView: View {
             List {
                 ForEach(realmManager.tasks, id: \.id) {
                     task in
-                    TaskRow(task: task.title, complated: task.completed)
-                        .onTapGesture {
-                            realmManager.updateTask(id: task.id, complated: !task.completed)
-                        }
+                    if !task.isInvalidated {
+                        TaskRow(task: task.title, complated: task.completed)
+                            .onTapGesture {
+                                realmManager.updateTask(id: task.id, complated: !task.completed)
+                            }
+                            .swipeActions(edge: .trailing) {
+                                Button(role: .destructive) {
+                                    realmManager.deleteTask(id: task.id)
+                                } label: {
+                                        Label("Sil", systemImage: "trash")
+                                }
+                            }
+                    }
+                    
                 }
                 .listRowSeparator(.hidden)
             }
