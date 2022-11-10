@@ -69,4 +69,22 @@ class RealmManager: ObservableObject {
     
     // MARK: - Update
     
+    func updateTask(id: ObjectId, complated: Bool){
+        if let localRealm = localRealm {
+            do {
+               let taskToUpdate = localRealm.objects(Task.self).filter(NSPredicate(format: "id == %@", id))
+                guard !taskToUpdate.isEmpty else {return}
+                
+                try localRealm.write {
+                    taskToUpdate[0].completed = complated
+                    getTasks()
+                    print("Güncelleme başarılı. ID: \(id) Tamamlanan: \(complated)")
+                }
+            } catch {
+                print("Hata! Veri güncelleme sorunu. ID: \(id) Hata: \(error)")
+            }
+        }
+        
+    }
+    
 }
