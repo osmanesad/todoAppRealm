@@ -9,6 +9,7 @@ import SwiftUI
 
 struct TasksView: View {
     @EnvironmentObject var realmManager: RealmManager
+    
     var body: some View {
         
         VStack{
@@ -18,8 +19,7 @@ struct TasksView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
             
             List {
-                ForEach(realmManager.tasks, id: \.id) {
-                    task in
+                ForEach(realmManager.tasks, id: \.id) { task in
                     if !task.isInvalidated {
                         TaskRow(task: task.title, complated: task.completed)
                             .onTapGesture {
@@ -29,7 +29,7 @@ struct TasksView: View {
                                 Button(role: .destructive) {
                                     realmManager.deleteTask(id: task.id)
                                 } label: {
-                                        Label("Sil", systemImage: "trash")
+                                    Label("Sil", systemImage: "trash")
                                 }
                             }
                     }
@@ -41,12 +41,12 @@ struct TasksView: View {
                 UITableView.appearance().backgroundColor = UIColor.clear
                 UITableViewCell.appearance().backgroundColor = UIColor.clear
             }
-            
+            Spacer()
             
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        
         //.background(Color(hue: 0.16, saturation: 0.087, brightness: 1.0))
-    
+        
         
         
     }

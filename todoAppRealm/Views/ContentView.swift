@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct ContentView: View {
-    
-    @State private var showAddTaskView = false
     @StateObject var realManager = RealmManager()
+    @State private var showAddTaskView = false
+    
     
     var body: some View {
         ZStack(alignment: .bottomTrailing){
