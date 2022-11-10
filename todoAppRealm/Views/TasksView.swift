@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct TasksView: View {
+    @EnvironmentObject var realmManager: RealmManager
     var body: some View {
         
         VStack{
@@ -16,9 +17,25 @@ struct TasksView: View {
                 .padding()
                 .frame(maxWidth: .infinity, alignment: .leading)
             
+            List {
+                ForEach(realmManager.tasks, id: \.id) {
+                    task in
+                    TaskRow(task: task.title, complated: task.completed)
+                        .onTapGesture {
+                            realmManager.updateTask(id: task.id, complated: !task.completed)
+                        }
+                }
+                .listRowSeparator(.hidden)
+            }
+            .onAppear() {
+                UITableView.appearance().backgroundColor = UIColor.clear
+                UITableViewCell.appearance().backgroundColor = UIColor.clear
+            }
+            
+            
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color(hue: 0.16, saturation: 0.087, brightness: 1.0))
+        //.background(Color(hue: 0.16, saturation: 0.087, brightness: 1.0))
     
         
         
@@ -28,5 +45,6 @@ struct TasksView: View {
 struct TasksView_Previews: PreviewProvider {
     static var previews: some View {
         TasksView()
+            .environmentObject(RealmManager())
     }
 }

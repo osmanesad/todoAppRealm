@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AddTaskView: View {
-    
+    @EnvironmentObject var realmManager : RealmManager
     @State private var title: String = ""
     @Environment(\.dismiss) var dismiss
     
@@ -23,7 +23,10 @@ struct AddTaskView: View {
                 //.cornerRadius(26)
             
             Button{
-                print("Yeni görev eklendi.")
+                if title != "" {
+                    realmManager.addTask(taskTitle: title)
+                }
+                
                 dismiss()
             } label: {
                 Text("Ekle")
@@ -37,7 +40,7 @@ struct AddTaskView: View {
         }
         .padding(.top, 40)
         .padding(.horizontal)
-        .background(Color(hue: 0.16, saturation: 0.087, brightness: 1.0))
+        //.background(Color(hue: 0.16, saturation: 0.087, brightness: 1.0))
         
         
     
@@ -48,5 +51,6 @@ struct AddTaskView: View {
 struct AddTaskView_Previews: PreviewProvider {
     static var previews: some View {
         AddTaskView()
+            .environmentObject(RealmManager())
     }
 }
