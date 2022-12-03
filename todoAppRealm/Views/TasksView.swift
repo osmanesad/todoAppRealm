@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import RealmSwift
 
 struct TasksView: View {
     @EnvironmentObject var realmManager: RealmManager
@@ -32,7 +33,9 @@ struct TasksView: View {
                                     Label("Sil", systemImage: "trash")
                                 }
                             }
+                        
                     }
+                    
                     
                 }
                 .listRowSeparator(.hidden)
